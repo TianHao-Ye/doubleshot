@@ -123,6 +123,10 @@ h1, h2, h3{
     overflow: hidden;
 }
 
+.about-right > .lead > a:hover{
+    opacity: 0.8;
+}
+
 /* button down and title -reusable */
 .btn-down{
     font-size: 3rem;
