@@ -63,7 +63,7 @@ h1, h2, h3{
 .grid{
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 1rem;
+    gap: 2rem;
 }
 .lead{
     opacity: 0.8;
@@ -303,7 +303,7 @@ h1, h2, h3{
     .work-bottom{
         grid-template-columns: repeat(2, 1fr);
         column-gap: 3rem;
-        row-gap: 0;
+        row-gap: 3rem;
     }
 }
 @media(min-width: 576px){
@@ -312,6 +312,7 @@ h1, h2, h3{
     }
     .work-bottom{
         grid-template-columns: repeat(4, 1fr);
+        row-gap: 3rem;
     }
     .portfolio-grid{
         grid-template-columns: repeat(2, 1fr);
