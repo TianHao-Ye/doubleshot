@@ -23,6 +23,7 @@ $(document).ready(function() {
   // Toggle list items when the button is clicked
   navToggle.click(function() {
       navContent.toggleClass("show-list");
+      $("li:contains('Double Shot Studio')").toggle();
   });
 });
 
