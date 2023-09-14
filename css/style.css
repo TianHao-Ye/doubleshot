@@ -88,11 +88,16 @@ h1, h2, h3{
     justify-content: space-between;
     
 }
+/* Button Styles */
+.navbar-toggler {
+    padding: 5px;
+}
+
+.navbar-toggler i{
+    font-size: 25px;
+}
 .nav-control a{
     color: var(--light-color);
-}
-.navbar-toggler{
-    display: block;
 }
 .nav-content ul li:first-child {
     white-space: nowrap; /* Prevent text from wrapping to the next line */
@@ -124,15 +129,6 @@ h1, h2, h3{
 /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
 .sticky + .content {
     padding-top: 60px;
-}
-
-/* Button Styles */
-.navbar-toggler {
-    padding: 5px;
-}
-
-.navbar-toggler i{
-    font-size: 25px;
 }
 
 .show-list {
@@ -378,13 +374,6 @@ h1, h2, h3{
     }
 }
 @media(max-width: 576px){
-    .navbar-toggler{
-        display: block;
-    }
-
-    #navbar .container{
-        flex-direction: column;
-    }
     .nav-content ul{
         display: none;
     }
@@ -393,14 +382,8 @@ h1, h2, h3{
     .title h2{
         font-size: 4rem;
     }
-    .nav-control a{
+    .nav-control{
         display: none;
-    }
-    .navbar-toggler {
-        display: none;
-    }
-    .nav-content ul{
-        flex-direction: row;
     }
     .work-bottom{
         grid-template-columns: repeat(4, 1fr);
