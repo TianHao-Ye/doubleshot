@@ -73,6 +73,61 @@ h1, h2, h3{
     line-height: 1.8;
 }
 
+/* navigation */
+#navbar{
+    background-color: rgb(45, 44, 44);
+    color: var(--light-color);
+    overflow: hidden; /* Hide any overflowing content */
+    z-index: 7;
+    padding: 5px 0;
+}
+.nav-content ul li:first-child {
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+}
+.nav-content ul li a{
+    color: var(--light-color);
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+.nav-content ul li a:hover{
+    opacity: 0.7;
+}
+.nav-content ul li{
+    margin: 0.5rem 1rem;
+}
+
+/* Page content */
+.content {
+    padding: 16px;
+}
+  
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+    padding-top: 60px;
+}
+
+/* Button Styles */
+.navbar-toggler {
+    display: none;
+    padding: 5px;
+}
+
+.navbar-toggler i{
+    font-size: 20px;
+}
+
+.show-list {
+    display: block !important;
+}
+
+
 /* header */
 #header{
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('../images/header-banner.jpg') center/cover no-repeat fixed;
@@ -310,9 +365,26 @@ h1, h2, h3{
         row-gap: 3rem;
     }
 }
+@media(max-width: 576px){
+    .nav-content ul{
+        display: none;
+        flex-direction: column;
+    }
+
+    .navbar-toggler{
+        display: block;
+    }
+
+    #navbar .container{
+        flex-direction: column;
+    }
+}
 @media(min-width: 576px){
     .title h2{
         font-size: 4rem;
+    }
+    .nav-content ul{
+        flex-direction: row;
     }
     .work-bottom{
         grid-template-columns: repeat(4, 1fr);
