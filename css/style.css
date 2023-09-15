@@ -273,6 +273,30 @@ h1, h2, h3{
     background-color: #000;
 }
 
+/* CSS for slow jump animation */
+.jump {
+    animation: jumpAnimation 3s infinite;
+}
+
+@keyframes jumpAnimation {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-15px);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
 /* about */
 .about-left{
     margin-bottom: 4rem;
