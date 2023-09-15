@@ -24,7 +24,7 @@
             </div>
 
             <div class="nav-content">
-                <ul class="flex">
+                <ul class="flex nav-content-list">
                     <li>
                     <a href="#">
                         <i class="fa-solid fa-camera"></i>
@@ -149,14 +149,64 @@
                         </a>
                     </div>
 
-                    <div class = "portfolio-grid grid">
-                        <div><img src = "images/port-1.jpg"></div>
-                        <div><img src = "images/port-2.jpg"></div>
-                        <div><img src = "images/port-3.jpg"></div>
-                        <div><img src = "images/port-4.jpg"></div>
-                        <div><img src = "images/port-5.jpg"></div>
-                        <div><img src = "images/port-6.jpg"></div>
-                        <div><img src = "images/port-7.jpg"></div>
+                     <!-- Category bar -->
+                    <div class="portfolio-nav">
+                        <!-- <button class="category-button active" data-category="all">All</button> -->
+                        <button class="category-button active" data-category="graduation">Graduation</button>
+                        <button class="category-button" data-category="portrait">Portrait</button>
+                        <button class="category-button" data-category="family">Family</button>
+                        <button class="category-button" data-category="pet">Pet</button>
+                        <button class="category-button" data-category="event">Event</button>
+                        <button class="category-button" data-category="wedding">Wedding</button>
+                        <button class="category-button" data-category="realestate">Real Estate</button>
+                        <button class="category-button" data-category="landscape">Landscape</button>
+                    </div>
+
+                    <div class="portfolio-grid grid">
+                        <!-- Add data-category attribute to each image -->
+                        <div data-category="graduation"><img src="images/graduation/graduation-1.jpg"></div>
+                        <div data-category="graduation"><img src="images/graduation/graduation-2.jpg"></div>
+                        <div data-category="graduation"><img src="images/graduation/graduation-3.jpg"></div>
+                        <div data-category="graduation"><img src="images/graduation/graduation-4.jpg"></div>
+                        <div data-category="graduation"><img src="images/graduation/graduation-5.jpg"></div>
+                        <div data-category="graduation"><img src="images/graduation/graduation-6.jpg"></div>
+                        <div data-category="graduation"><img src="images/graduation/graduation-7.jpg"></div>
+                    </div>
+
+                    <!-- <div class="portfolio-grid grid">
+                        <div data-category="portrait"><img src="images/portrait/portrait-1.jpg"></div>
+                        <div data-category="portrait"><img src="images/portrait/portrait-2.jpg"></div>
+                        <div data-category="portrait"><img src="images/portrait/portrait-3.jpg"></div>
+                        <div data-category="portrait"><img src="images/portrait/portrait-4.jpg"></div>
+                        <div data-category="portrait"><img src="images/portrait/portrait-5.jpg"></div>
+                        <div data-category="portrait"><img src="images/portrait/portrait-6.jpg"></div>
+                        <div data-category="portrait"><img src="images/portrait/portrait-7.jpg"></div>
+                        <div data-category="portrait"><img src="images/portrait/portrait-8.jpg"></div>
+                        <div data-category="portrait"><img src="images/portrait/portrait-9.jpg"></div>
+                        <div data-category="portrait"><img src="images/portrait/portrait-10.jpg"></div>
+                    </div> -->
+
+                    <div class="portfolio-grid grid">
+                        <!-- Add data-category attribute to each image -->
+                        <div data-category="landscape"><img src="images/landscape/landscape-1.jpg"></div>
+                        <div data-category="landscape"><img src="images/landscape/landscape-2.jpg"></div>
+                        <div data-category="landscape"><img src="images/landscape/landscape-3.jpg"></div>
+                        <div data-category="landscape"><img src="images/landscape/landscape-4.jpg"></div>
+                        <div data-category="landscape"><img src="images/landscape/landscape-5.jpg"></div>
+                        <div data-category="landscape"><img src="images/landscape/landscape-6.jpg"></div>
+                        <div data-category="landscape"><img src="images/landscape/landscape-7.jpg"></div>
+                    </div>
+
+
+                    <!-- Lightbox HTML -->
+                    <div id="lightbox" class="lightbox">
+                        <span class="lightbox-close" id="lightbox-close">&times;</span>
+                        <span class="lightbox-prev" id="lightbox-prev">&#10094;</span>
+                        <span class="lightbox-next" id="lightbox-next">&#10095;</span>
+                        <div class="lightbox-content">
+                            <img id="lightbox-img" src="" alt="Lightbox Image">
+                            <div class="lightbox-caption" id="lightbox-caption"></div>
+                        </div>
                     </div>
                 </div>
             </div>

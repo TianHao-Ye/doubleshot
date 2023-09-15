@@ -59,3 +59,83 @@ $(document).ready(function() {
     });
 });
 
+
+$(document).ready(function() {
+    // Initial category is "graduation"
+    let currentCategory = "graduation";
+
+    $(".category-button").click(function() {
+        // Remove the "active" class from all buttons
+        $(".category-button").removeClass("active");
+        
+        // Add the "active" class to the clicked button
+        $(this).addClass("active");
+
+        // Get the data-category attribute of the clicked button
+        const newCategory = $(this).data("category");
+
+        // Filter the images based on the selected category
+        $(".portfolio-grid div").hide();
+        $(".portfolio-grid div[data-category='" + newCategory + "']").show();
+
+        // Update the current category
+        currentCategory = newCategory;
+    });
+});
+
+
+// JavaScript
+$(document).ready(function() {
+    // Lightbox variables
+    const lightbox = $("#lightbox");
+    const lightboxImg = $("#lightbox-img");
+    const lightboxPrev = $("#lightbox-prev");
+    const lightboxNext = $("#lightbox-next");
+    const lightboxClose = $("#lightbox-close");
+
+    // Variables to track the currently displayed image index and category
+    let currentIndex = 0;
+    let currentCategory = "";
+
+    // Function to open the lightbox with a specific image
+    function openLightbox(index, category) {
+        const filteredImages = $(".portfolio-grid div[data-category='" + category + "'] img");
+        lightboxImg.attr("src", filteredImages.eq(index).attr("src"));
+        currentIndex = index;
+        currentCategory = category;
+        // Disable scrolling by setting the body's overflow to hidden
+        $("body").css("overflow", "hidden");
+        lightbox.show();
+    }
+
+    // Function to close the lightbox
+    function closeLightbox() {
+        // Enable scrolling by setting the body's overflow to auto
+        $("body").css("overflow", "auto");
+        lightbox.hide();
+    }
+
+    // Click event handlers for all images
+    $(".portfolio-grid div").click(function() {
+        const index = $(this).index();
+        const category = $(this).data("category"); // Get the category of the clicked image
+        openLightbox(index, category);
+    });
+
+    // Click event handler for the close button
+    lightboxClose.click(function() {
+        closeLightbox();
+    });
+
+    // Click event handler for the previous button
+    lightboxPrev.click(function() {
+        currentIndex = (currentIndex - 1 + $(".portfolio-grid div[data-category='" + currentCategory + "'] img").length) % $(".portfolio-grid div[data-category='" + currentCategory + "'] img").length;
+        openLightbox(currentIndex, currentCategory);
+    });
+
+    // Click event handler for the next button
+    lightboxNext.click(function() {
+        currentIndex = (currentIndex + 1) % $(".portfolio-grid div[data-category='" + currentCategory + "'] img").length;
+        openLightbox(currentIndex, currentCategory);
+    });
+});
