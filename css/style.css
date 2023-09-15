@@ -179,50 +179,6 @@ h1, h2, h3{
     opacity: 0.8;
 }
 
-/* about */
-.about-left{
-    margin-bottom: 4rem;
-    height: 480px;
-    overflow: hidden;
-}
-
-.about-right > .lead > a:hover{
-    opacity: 0.8;
-}
-
-/* button down and title -reusable */
-.btn-down{
-    font-size: 3rem;
-    display: inline-block;
-    margin-top: 1rem;
-    transition: var(--transition);
-}
-.btn-down:hover{
-    opacity: 0.8;
-    transform: translateY(5px);
-}
-.btn-down-white{
-    color: var(--light-color);
-}
-.title{
-    margin-bottom: 5rem;
-}
-.title h2{
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-weight: 600;
-    position: relative;
-}
-.title h2::after{
-    position: absolute;
-    content: "";
-    top: 120%;
-    left: 0;
-    width: 70px;
-    height: 4px;
-    background-color: var(--dark-color);
-}
-
 /* work */
 #work{
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('../images/work-pic.jpg') center/cover no-repeat fixed;
@@ -247,6 +203,30 @@ h1, h2, h3{
     transition: var(--transition);
 }
 .portfolio-grid > div:hover{
+    transform: scale(0.9);
+}
+
+/* instagram */
+#insta{
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('../images/insta-pic.jpg') center/cover no-repeat fixed;
+    min-height: 65vh;
+}
+#insta .title h2{
+    color: var(--light-color);
+}
+#insta .title h2::after{
+    background-color: var(--light-color);
+}
+.insta-grid > div{
+    height: 400px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+.insta-grid > div img{
+    height: 100%;
+    object-fit: cover;
+}
+.insta-grid > div:hover{
     transform: scale(0.9);
 }
 
@@ -293,27 +273,48 @@ h1, h2, h3{
     background-color: #000;
 }
 
-#insta{
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('../images/insta-pic.jpg') center/cover no-repeat fixed;
-    min-height: 65vh;
-}
-#insta .title h2{
-    color: var(--light-color);
-}
-#insta .title h2::after{
-    background-color: var(--light-color);
-}
-.insta-grid > div{
-    height: 400px;
+/* about */
+.about-left{
+    margin-bottom: 4rem;
+    height: 480px;
     overflow: hidden;
+}
+
+.about-right > .lead > a:hover{
+    opacity: 0.8;
+}
+
+/* button down and title -reusable */
+.btn-down{
+    font-size: 3rem;
+    display: inline-block;
+    margin-top: 1rem;
     transition: var(--transition);
 }
-.insta-grid > div img{
-    height: 100%;
-    object-fit: cover;
+.btn-down:hover{
+    opacity: 0.8;
+    transform: translateY(5px);
 }
-.insta-grid > div:hover{
-    transform: scale(0.9);
+.btn-down-white{
+    color: var(--light-color);
+}
+.title{
+    margin-bottom: 5rem;
+}
+.title h2{
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 600;
+    position: relative;
+}
+.title h2::after{
+    position: absolute;
+    content: "";
+    top: 120%;
+    left: 0;
+    width: 70px;
+    height: 4px;
+    background-color: var(--dark-color);
 }
 
 /* footer */
