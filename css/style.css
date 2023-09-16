@@ -202,12 +202,10 @@ h1, h2, h3{
 }
 
 /* portfolio */
-/* Portfolio Navigation Bar */
+
 .portfolio-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 15px;
 }
 
 .portfolio-nav button {
@@ -215,7 +213,10 @@ h1, h2, h3{
     font-size: 1.5rem;
     color: #777; /* Default button color */
     padding: 10px 20px;
+    margin: 5px; /* Add margin to create spacing between buttons */
+    max-width: 100%; /* Allow buttons to occupy full width of grid cell */
 }
+
 
 .portfolio-nav button.active {
     color: #333; /* Dark grey color for active text */
@@ -502,6 +503,10 @@ h1, h2, h3{
         column-gap: 3rem;
         row-gap: 3rem;
     }
+    .portfolio-nav{
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
 }
 @media(max-width: 576px){
     .nav-content ul{
@@ -529,6 +534,9 @@ h1, h2, h3{
     .portfolio-grid > div img{
         height: 100%;
         object-fit: cover;
+    }
+    .portfolio-nav {
+        grid-template-columns: repeat(8, 1fr); /* Display 4 buttons in a row when screen width is small */
     }
     .contact-left form .form-control{
         max-width: 500px;
