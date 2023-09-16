@@ -148,28 +148,46 @@ $(document).ready(function() {
     // Initialize Hammer.js on the lightbox container
     var hammer = new Hammer($lightboxImg[0]);
 
-    // Handle pinch gesture to zoom in and out
+    // Variables for tracking zoom and pan
     var scaleFactor = 1;
+    var lastScaleFactor = 1;
+    var lastPosX = 0;
+    var lastPosY = 0;
+    var posX = 0;
+    var posY = 0;
+
+    // Handle pinch gesture to zoom in and out
     hammer.get("pinch").set({ enable: true });
-    
+
     hammer.on("pinchstart", function(e) {
-        scaleFactor = 1;
+        lastScaleFactor = scaleFactor;
     });
 
     hammer.on("pinch", function(e) {
-        var newScaleFactor = scaleFactor * e.scale;
-        
-        // Limit the minimum and maximum scale factor as needed
-        if (newScaleFactor >= 1 && newScaleFactor <= 3) {
-            scaleFactor = newScaleFactor;
-            $lightboxImg.css("transform", "scale(" + scaleFactor + ")");
-        }
+        scaleFactor = Math.max(1, Math.min(lastScaleFactor * e.scale, 3));
+        $lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
+    });
+
+    // Handle pan/drag gesture
+    hammer.get("pan").set({ direction: Hammer.DIRECTION_ALL });
+
+    hammer.on("panstart", function(e) {
+        lastPosX = posX;
+        lastPosY = posY;
+    });
+
+    hammer.on("pan", function(e) {
+        posX = lastPosX + e.deltaX;
+        posY = lastPosY + e.deltaY;
+        $lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
     });
 
     // Handle double-tap to reset zoom
     hammer.on("doubletap", function() {
         scaleFactor = 1;
-        $lightboxImg.css("transform", "scale(" + scaleFactor + ")");
+        posX = 0;
+        posY = 0;
+        $lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
     });
-
 });
+
