@@ -513,7 +513,7 @@ h1, h2, h3{
         display: none;
     }
     .header-content h1{
-        font-size: 3.5rem;
+        font-size: 4rem;
     }
 }
 @media(min-width: 576px){
