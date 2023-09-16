@@ -512,9 +512,6 @@ h1, h2, h3{
     .nav-content ul{
         display: none;
     }
-    .header-content h1{
-        font-size: 4.5rem;
-    }
 }
 @media(min-width: 576px){
     .title h2{
