@@ -150,6 +150,7 @@ h1, h2, h3{
 }
 .header-content{
     padding-bottom: 4rem;
+    overflow: hidden; /* Add this line to hide overflow */
 }
 .header-content h1{
     font-size: 4.5rem;
