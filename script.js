@@ -139,3 +139,23 @@ $(document).ready(function() {
         openLightbox(currentIndex, currentCategory);
     });
 });
+
+
+$(document).ready(function() {
+    let lastScale = 1;
+    let lightboxImg = document.getElementById('lightbox-img');
+    
+    lightboxImg.addEventListener('gesturechange', function(e) {
+        lastScale = e.scale;
+    });
+
+    lightboxImg.addEventListener('gestureend', function() {
+        lastScale = 1;
+    });
+
+    lightboxImg.addEventListener('touchmove', function(e) {
+        if (lastScale !== 1) {
+            e.preventDefault();
+        }
+    });
+});
