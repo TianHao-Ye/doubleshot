@@ -142,20 +142,27 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
-    let lastScale = 1;
-    let lightboxImg = document.getElementById('lightbox-img');
+    // Initialize panzoom on the lightbox image
+    var $zoomContainer = $("#zoom-container");
+    var $lightboxImg = $("#lightbox-img");
     
-    lightboxImg.addEventListener('gesturechange', function(e) {
-        lastScale = e.scale;
-    });
+    $lightboxImg.panzoom();
 
-    lightboxImg.addEventListener('gestureend', function() {
-        lastScale = 1;
-    });
-
-    lightboxImg.addEventListener('touchmove', function(e) {
-        if (lastScale !== 1) {
-            e.preventDefault();
+    // Disable panzoom when pinch gesture is detected
+    $lightboxImg.on("touchstart", function(e) {
+        if (e.originalEvent.touches.length > 1) {
+            $lightboxImg.panzoom("disable");
         }
     });
+
+    // Enable panzoom when pinch gesture ends
+    $lightboxImg.on("touchend", function() {
+        $lightboxImg.panzoom("enable");
+    });
+
+    // Handle double-tap to zoom in and out
+    $lightboxImg.on("doubletap", function() {
+        $lightboxImg.panzoom("zoom", "toggle");
+    });
 });
+
