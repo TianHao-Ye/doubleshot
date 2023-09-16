@@ -146,7 +146,7 @@ $(document).ready(function() {
     var $lightboxImg = $("#lightbox-img");
 
     // Initialize Hammer.js on the lightbox container
-    var hammer = new Hammer($lightbox[0]);
+    var hammer = new Hammer($lightboxImg[0]);
 
     // Handle pinch gesture to zoom in and out
     var scaleFactor = 1;
@@ -162,14 +162,14 @@ $(document).ready(function() {
         // Limit the minimum and maximum scale factor as needed
         if (newScaleFactor >= 1 && newScaleFactor <= 3) {
             scaleFactor = newScaleFactor;
-            $lightbox.css("transform", "scale(" + scaleFactor + ")");
+            $lightboxImg.css("transform", "scale(" + scaleFactor + ")");
         }
     });
 
     // Handle double-tap to reset zoom
     hammer.on("doubletap", function() {
         scaleFactor = 1;
-        $lightbox.css("transform", "scale(" + scaleFactor + ")");
+        $lightboxImg.css("transform", "scale(" + scaleFactor + ")");
     });
 
 });

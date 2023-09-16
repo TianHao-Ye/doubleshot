@@ -258,6 +258,7 @@ h1, h2, h3{
 }
 
 
+
 .lightbox-img {
     max-width: 100%;
     max-height: 90vh;
@@ -266,6 +267,7 @@ h1, h2, h3{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    cursor: pointer; /* Add this line */
 }
 
 .lightbox-buttons {
