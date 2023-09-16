@@ -142,27 +142,35 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
-    // Initialize panzoom on the lightbox image
-    var $zoomContainer = $("#zoom-container");
+    var $lightbox = $("#lightbox");
     var $lightboxImg = $("#lightbox-img");
-    
-    $lightboxImg.panzoom();
 
-    // Disable panzoom when pinch gesture is detected
-    $lightboxImg.on("touchstart", function(e) {
-        if (e.originalEvent.touches.length > 1) {
-            $lightboxImg.panzoom("disable");
+    // Initialize Hammer.js on the lightbox image
+    var hammer = new Hammer($lightboxImg[0]);
+
+    // Handle pinch gesture to zoom in and out
+    var scaleFactor = 1;
+    hammer.get("pinch").set({ enable: true });
+    
+    hammer.on("pinchstart", function(e) {
+        scaleFactor = 1;
+    });
+
+    hammer.on("pinch", function(e) {
+        var newScaleFactor = scaleFactor * e.scale;
+        
+        // Limit the minimum and maximum scale factor as needed
+        if (newScaleFactor >= 1 && newScaleFactor <= 3) {
+            scaleFactor = newScaleFactor;
+            $lightboxImg.css("transform", "scale(" + scaleFactor + ")");
         }
     });
 
-    // Enable panzoom when pinch gesture ends
-    $lightboxImg.on("touchend", function() {
-        $lightboxImg.panzoom("enable");
-    });
-
-    // Handle double-tap to zoom in and out
-    $lightboxImg.on("doubletap", function() {
-        $lightboxImg.panzoom("zoom", "toggle");
+    // Handle double-tap to reset zoom
+    hammer.on("doubletap", function() {
+        scaleFactor = 1;
+        $lightboxImg.css("transform", "scale(" + scaleFactor + ")");
     });
 });
+
 
