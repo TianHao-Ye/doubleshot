@@ -156,6 +156,7 @@ h1, h2, h3{
     margin-bottom: 0;
     text-transform: uppercase;
     color: var(--light-color);
+    overflow: hidden;
 }
 .header-content h3{
     color: var(--light-color);
