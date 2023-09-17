@@ -220,4 +220,27 @@ $(document).ready(function() {
     hammer.on("doubletap", function() {
         resetImagePosition();
     });
+
+    // Swipe left and right to navigate between images
+    hammer.get("swipe").set({ direction: Hammer.DIRECTION_HORIZONTAL });
+
+    hammer.on("swiperight", function() {
+        // Handle swipe right (previous image)
+        goToPreviousImage();
+    });
+
+    hammer.on("swipeleft", function() {
+        // Handle swipe left (next image)
+        goToNextImage();
+    });
+
+    // Event listener for opening the lightbox
+    $(".portfolio-grid div").click(function() {
+        const index = $(this).index();
+        const category = $(this).data("category");
+        const $filteredImages = $(".portfolio-grid div[data-category='" + category + "'] img");
+        $lightboxImg.attr("src", $filteredImages.eq(index).attr("src"));
+        resetImagePosition(); // Reset image scale
+        $lightbox.show();
+    });
 });
