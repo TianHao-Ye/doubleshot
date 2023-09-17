@@ -84,7 +84,6 @@ $(document).ready(function() {
 });
 
 
-// JavaScript
 $(document).ready(function() {
     // Lightbox variables
     const lightbox = $("#lightbox");
@@ -124,6 +123,7 @@ $(document).ready(function() {
 
     // Click event handler for the close button
     lightboxClose.click(function() {
+        resetImagePosition(); // Reset image position and scale
         closeLightbox();
     });
 
@@ -138,6 +138,15 @@ $(document).ready(function() {
         currentIndex = (currentIndex + 1) % $(".portfolio-grid div[data-category='" + currentCategory + "'] img").length;
         openLightbox(currentIndex, currentCategory);
     });
+
+    // Function to reset image position and scale
+    function resetImagePosition() {
+        scaleFactor = 1;
+        posX = 0;
+        posY = 0;
+        lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
+    }
+
 });
 
 
@@ -190,4 +199,3 @@ $(document).ready(function() {
         $lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
     });
 });
-
