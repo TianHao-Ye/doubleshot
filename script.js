@@ -202,7 +202,7 @@ $(document).ready(function() {
     });
 
     // Initialize Hammer.js on the lightbox container for pinch and double-tap gestures
-    var hammer = new Hammer($lightboxImg[0]);
+    let hammer = new Hammer(lightboxImg[0]);
 
     // Handle pinch gesture to zoom in and out
     hammer.get("pinch").set({ enable: true });
@@ -213,7 +213,7 @@ $(document).ready(function() {
 
     hammer.on("pinch", function(e) {
         scaleFactor = Math.max(1, Math.min(lastScaleFactor * e.scale, 3));
-        $lightboxImg.css("transform", "scale(" + scaleFactor + ")");
+        lightboxImg.css("transform", "scale(" + scaleFactor + ")");
     });
 
     // Handle double-tap to reset zoom

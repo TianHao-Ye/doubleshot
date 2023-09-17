@@ -230,6 +230,7 @@ h1, h2, h3{
 
 .portfolio-grid > div:hover{
     transform: scale(0.9);
+    cursor: pointer;
 }
 /* CSS for lightbox */
 .lightbox {
