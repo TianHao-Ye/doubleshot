@@ -233,7 +233,7 @@ $(document).ready(function() {
 
     hammer.on("pinch", function(e) {
         scaleFactor = Math.max(1, Math.min(lastScaleFactor * e.scale, 3));
-        $lightboxImg.css("transform", "scale(" + scaleFactor + ")");
+        $lightboxImg.css("transform", "translate(-50%, -50%) scale(" + scaleFactor + ")");
     });
 
     // Handle double-tap to reset zoom

@@ -221,6 +221,7 @@ h1, h2, h3{
 
 .portfolio-nav button.active {
     color: #333; /* Dark grey color for active text */
+    font-weight: 600;
 }
 
 .portfolio-grid > div{
