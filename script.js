@@ -61,8 +61,18 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
+    // Function to filter the images based on the selected category
+    function filterImages(category) {
+        $(".portfolio-grid div").hide();
+        $(".portfolio-grid div[data-category='" + category + "']").show();
+    }
+
     // Initial category is "graduation"
     let currentCategory = "graduation";
+
+    // Trigger a click event on the "graduation" category button
+    $(".category-button[data-category='graduation']").addClass("active");
+    filterImages("graduation");
 
     $(".category-button").click(function() {
         // Remove the "active" class from all buttons
@@ -75,13 +85,14 @@ $(document).ready(function() {
         const newCategory = $(this).data("category");
 
         // Filter the images based on the selected category
-        $(".portfolio-grid div").hide();
-        $(".portfolio-grid div[data-category='" + newCategory + "']").show();
+        filterImages(newCategory);
 
         // Update the current category
         currentCategory = newCategory;
     });
 });
+
+
 
 
 $(document).ready(function() {
