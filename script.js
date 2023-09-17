@@ -73,6 +73,7 @@ $(document).ready(function() {
     // Trigger a click event on the "graduation" category button
     $(".category-button[data-category='graduation']").addClass("active");
     filterImages("graduation");
+    
 
     $(".category-button").click(function() {
         // Remove the "active" class from all buttons
