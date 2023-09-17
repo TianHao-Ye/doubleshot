@@ -51,11 +51,6 @@ $(document).ready(function() {
 
         // Add the 'jump' class to start the animation
         elementToAnimate.addClass("jump");
-
-        // // After a delay, remove the 'jump' class to reset the animation
-        // setTimeout(function() {
-        //     elementToAnimate.removeClass("jump");
-        // }, 4000); // Adjust the delay as needed (1 second in this example)
     });
 });
 
@@ -73,7 +68,7 @@ $(document).ready(function() {
     // Trigger a click event on the "graduation" category button
     $(".category-button[data-category='graduation']").addClass("active");
     filterImages("graduation");
-    
+
 
     $(".category-button").click(function() {
         // Remove the "active" class from all buttons
@@ -153,11 +148,61 @@ $(document).ready(function() {
 
     // Function to reset image position and scale
     function resetImagePosition() {
-        scaleFactor = 1;
-        posX = 0;
-        posY = 0;
-        lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
+        let scaleFactor = 1;
+        let posX = 0;
+        let posY = 0;
+        lightboxImg.css("transform", "translate(-50%, -50%) scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
     }
+
+    // Function to navigate to the previous image in the lightbox
+    function goToPreviousImage() {
+        currentIndex = (currentIndex - 1 + $(".portfolio-grid div[data-category='" + currentCategory + "'] img").length) % $(".portfolio-grid div[data-category='" + currentCategory + "'] img").length;
+        openLightbox(currentIndex, currentCategory);
+    }
+
+    // Function to navigate to the next image in the lightbox
+    function goToNextImage() {
+        currentIndex = (currentIndex + 1) % $(".portfolio-grid div[data-category='" + currentCategory + "'] img").length;
+        openLightbox(currentIndex, currentCategory);
+    }
+
+    // event listtener for keys
+    // Event listener for the left arrow key (previous image)
+    $(document).keydown(function(e) {
+        if (lightbox.is(":visible") && e.keyCode === 37) { // Left arrow key
+            goToPreviousImage();
+        }
+    });
+
+    // Event listener for the right arrow key (next image)
+    $(document).keydown(function(e) {
+        if (lightbox.is(":visible") && e.keyCode === 39) { // Right arrow key
+            goToNextImage();
+        }
+    });
+
+    // Event listener for the page up key (previous image)
+    $(document).keydown(function(e) {
+        if (lightbox.is(":visible") && e.keyCode === 38) { // Page up key
+            goToPreviousImage();
+        }
+    });
+
+    // Event listener for the page down key (next image)
+    $(document).keydown(function(e) {
+        if (lightbox.is(":visible") && e.keyCode === 40) { // Page down key
+            goToNextImage();
+        }
+    });
+
+    // Event listener for the ESC key (close lightbox)
+    $(document).keydown(function(e) {
+        if (lightbox.is(":visible") && e.keyCode === 27) { // ESC key
+            resetImagePosition(); // Reset image position and scale
+            closeLightbox();
+        }
+    });
+
 
 });
 
@@ -166,16 +211,18 @@ $(document).ready(function() {
     var $lightbox = $("#lightbox");
     var $lightboxImg = $("#lightbox-img");
 
-    // Initialize Hammer.js on the lightbox container
+    // Initialize Hammer.js on the lightbox container for pinch and double-tap gestures
     var hammer = new Hammer($lightboxImg[0]);
 
-    // Variables for tracking zoom and pan
+    // Variables for tracking zoom
     var scaleFactor = 1;
     var lastScaleFactor = 1;
-    var lastPosX = 0;
-    var lastPosY = 0;
-    var posX = 0;
-    var posY = 0;
+
+    // Function to reset the image position and scale
+    function resetImagePosition() {
+        scaleFactor = 1;
+        lightboxImg.css("transform", "translate(-50%, -50%) scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
+    }
 
     // Handle pinch gesture to zoom in and out
     hammer.get("pinch").set({ enable: true });
@@ -186,28 +233,21 @@ $(document).ready(function() {
 
     hammer.on("pinch", function(e) {
         scaleFactor = Math.max(1, Math.min(lastScaleFactor * e.scale, 3));
-        $lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
-    });
-
-    // Handle pan/drag gesture
-    hammer.get("pan").set({ direction: Hammer.DIRECTION_ALL });
-
-    hammer.on("panstart", function(e) {
-        lastPosX = posX;
-        lastPosY = posY;
-    });
-
-    hammer.on("pan", function(e) {
-        posX = lastPosX + e.deltaX;
-        posY = lastPosY + e.deltaY;
-        $lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
+        $lightboxImg.css("transform", "scale(" + scaleFactor + ")");
     });
 
     // Handle double-tap to reset zoom
     hammer.on("doubletap", function() {
-        scaleFactor = 1;
-        posX = 0;
-        posY = 0;
-        $lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
+        resetImagePosition();
+    });
+
+    // Event listener for opening the lightbox
+    $(".portfolio-grid div").click(function() {
+        const index = $(this).index();
+        const category = $(this).data("category");
+        const $filteredImages = $(".portfolio-grid div[data-category='" + category + "'] img");
+        $lightboxImg.attr("src", $filteredImages.eq(index).attr("src"));
+        resetImagePosition(); // Reset image scale
+        $lightbox.show();
     });
 });
