@@ -265,11 +265,13 @@ h1, h2, h3{
     width: auto;
     height: auto;
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
     transform-origin: center center;
-    transform: translate(-50%, -50%);
-    cursor: pointer; /* Add this line */
+    cursor: pointer;
 }
 
 /* Update the CSS for positioned buttons outside the lightbox content */

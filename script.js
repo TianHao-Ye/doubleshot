@@ -151,7 +151,7 @@ $(document).ready(function() {
         let scaleFactor = 1;
         let posX = 0;
         let posY = 0;
-        lightboxImg.css("transform", "translate(-50%, -50%) scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
+        lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
     }
 
     // Function to navigate to the previous image in the lightbox
@@ -221,7 +221,7 @@ $(document).ready(function() {
     // Function to reset the image position and scale
     function resetImagePosition() {
         scaleFactor = 1;
-        lightboxImg.css("transform", "translate(-50%, -50%) scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
+        lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
     }
 
     // Handle pinch gesture to zoom in and out
@@ -233,7 +233,7 @@ $(document).ready(function() {
 
     hammer.on("pinch", function(e) {
         scaleFactor = Math.max(1, Math.min(lastScaleFactor * e.scale, 3));
-        $lightboxImg.css("transform", "translate(-50%, -50%) scale(" + scaleFactor + ")");
+        $lightboxImg.css("transform", "scale(" + scaleFactor + ")");
     });
 
     // Handle double-tap to reset zoom
