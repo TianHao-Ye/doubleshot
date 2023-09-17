@@ -103,6 +103,12 @@ $(document).ready(function() {
     let currentIndex = 0;
     let currentCategory = "";
 
+    // Variables for tracking zoom
+    let scaleFactor = 1;
+    let lastScaleFactor = 1;
+    let posX = 0;
+    let posY = 0;
+
     // Function to open the lightbox with a specific image
     function openLightbox(index, category) {
         const filteredImages = $(".portfolio-grid div[data-category='" + category + "'] img");
@@ -112,13 +118,6 @@ $(document).ready(function() {
         // Disable scrolling by setting the body's overflow to hidden
         $("body").css("overflow", "hidden");
         lightbox.show();
-    }
-
-    // Function to close the lightbox
-    function closeLightbox() {
-        // Enable scrolling by setting the body's overflow to auto
-        $("body").css("overflow", "auto");
-        lightbox.hide();
     }
 
     // Click event handlers for all images
@@ -147,11 +146,15 @@ $(document).ready(function() {
     });
 
     // Function to reset image position and scale
-    function resetImagePosition() {
-        let scaleFactor = 1;
-        let posX = 0;
-        let posY = 0;
+    function resetImagePosition() {       
         lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
+    }
+
+    // Function to close the lightbox
+    function closeLightbox() {
+        // Enable scrolling by setting the body's overflow to auto
+        $("body").css("overflow", "auto");
+        lightbox.hide();
     }
 
     // Function to navigate to the previous image in the lightbox
@@ -174,55 +177,32 @@ $(document).ready(function() {
         }
     });
 
-    // Event listener for the right arrow key (next image)
+    // Event listener for keyboard actions
     $(document).keydown(function(e) {
-        if (lightbox.is(":visible") && e.keyCode === 39) { // Right arrow key
-            goToNextImage();
+        if (lightbox.is(":visible")) {
+            switch (e.keyCode) {
+                case 37: // Left arrow key
+                    goToPreviousImage();
+                    break;
+                case 39: // Right arrow key
+                    goToNextImage();
+                    break;
+                case 38: // Page up key
+                    goToPreviousImage();
+                    break;
+                case 40: // Page down key
+                    goToNextImage();
+                    break;
+                case 27: // ESC key
+                    resetImagePosition();
+                    closeLightbox();
+                    break;
+            }
         }
     });
-
-    // Event listener for the page up key (previous image)
-    $(document).keydown(function(e) {
-        if (lightbox.is(":visible") && e.keyCode === 38) { // Page up key
-            goToPreviousImage();
-        }
-    });
-
-    // Event listener for the page down key (next image)
-    $(document).keydown(function(e) {
-        if (lightbox.is(":visible") && e.keyCode === 40) { // Page down key
-            goToNextImage();
-        }
-    });
-
-    // Event listener for the ESC key (close lightbox)
-    $(document).keydown(function(e) {
-        if (lightbox.is(":visible") && e.keyCode === 27) { // ESC key
-            resetImagePosition(); // Reset image position and scale
-            closeLightbox();
-        }
-    });
-
-
-});
-
-
-$(document).ready(function() {
-    var $lightbox = $("#lightbox");
-    var $lightboxImg = $("#lightbox-img");
 
     // Initialize Hammer.js on the lightbox container for pinch and double-tap gestures
     var hammer = new Hammer($lightboxImg[0]);
-
-    // Variables for tracking zoom
-    var scaleFactor = 1;
-    var lastScaleFactor = 1;
-
-    // Function to reset the image position and scale
-    function resetImagePosition() {
-        scaleFactor = 1;
-        lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
-    }
 
     // Handle pinch gesture to zoom in and out
     hammer.get("pinch").set({ enable: true });
@@ -239,15 +219,5 @@ $(document).ready(function() {
     // Handle double-tap to reset zoom
     hammer.on("doubletap", function() {
         resetImagePosition();
-    });
-
-    // Event listener for opening the lightbox
-    $(".portfolio-grid div").click(function() {
-        const index = $(this).index();
-        const category = $(this).data("category");
-        const $filteredImages = $(".portfolio-grid div[data-category='" + category + "'] img");
-        $lightboxImg.attr("src", $filteredImages.eq(index).attr("src"));
-        resetImagePosition(); // Reset image scale
-        $lightbox.show();
     });
 });
