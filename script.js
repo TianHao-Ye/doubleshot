@@ -118,6 +118,13 @@ $(document).ready(function() {
         if (isMobileDevice()) {
             lightboxPrev.hide();
             lightboxNext.hide();
+            // Set initial position off-screen to the right
+            lightboxImg.css("transform", "translateX(100%)");
+
+            // Trigger the transition to slide in from the right
+            setTimeout(function () {
+                lightboxImg.css("transform", "translateX(0)");
+            }, 0); // Use a short delay to ensure the transition is applied
         } else {
             lightboxPrev.show();
             lightboxNext.show();
