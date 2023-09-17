@@ -88,9 +88,6 @@ $(document).ready(function() {
     });
 });
 
-
-
-
 $(document).ready(function() {
     // Lightbox variables
     const lightbox = $("#lightbox");
@@ -118,6 +115,17 @@ $(document).ready(function() {
         // Disable scrolling by setting the body's overflow to hidden
         $("body").css("overflow", "hidden");
         lightbox.show();
+        if (isMobileDevice()) {
+            lightboxPrev.hide();
+            lightboxNext.hide();
+        } else {
+            lightboxPrev.show();
+            lightboxNext.show();
+        }
+    }
+
+    function isMobileDevice() {
+        return /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
     }
 
     // Click event handlers for all images
@@ -168,14 +176,6 @@ $(document).ready(function() {
         currentIndex = (currentIndex + 1) % $(".portfolio-grid div[data-category='" + currentCategory + "'] img").length;
         openLightbox(currentIndex, currentCategory);
     }
-
-    // event listtener for keys
-    // Event listener for the left arrow key (previous image)
-    $(document).keydown(function(e) {
-        if (lightbox.is(":visible") && e.keyCode === 37) { // Left arrow key
-            goToPreviousImage();
-        }
-    });
 
     // Event listener for keyboard actions
     $(document).keydown(function(e) {
@@ -232,15 +232,5 @@ $(document).ready(function() {
     hammer.on("swipeleft", function() {
         // Handle swipe left (next image)
         goToNextImage();
-    });
-
-    // Event listener for opening the lightbox
-    $(".portfolio-grid div").click(function() {
-        const index = $(this).index();
-        const category = $(this).data("category");
-        const $filteredImages = $(".portfolio-grid div[data-category='" + category + "'] img");
-        $lightboxImg.attr("src", $filteredImages.eq(index).attr("src"));
-        resetImagePosition(); // Reset image scale
-        $lightbox.show();
     });
 });
