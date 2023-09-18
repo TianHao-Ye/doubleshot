@@ -274,6 +274,7 @@ h1, h2, h3{
     transform-origin: center center;
     cursor: pointer;
     transition: transform 0.3s ease-in-out; /* Adjust the duration and timing function as needed */
+    touch-action: none;
 }
 
 /* Update the CSS for positioned buttons outside the lightbox content */

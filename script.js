@@ -208,6 +208,10 @@ $(document).ready(function() {
     let hammer = new Hammer(lightboxImg[0]);
     // Variable to track if the user is in pan mode
     let isPanning = false;
+    let translateX = 0;
+    let translateY = 0;
+    let startX = 0;
+    let startY = 0;
 
     // Handle pinch gesture to zoom in and out
     hammer.get("pinch").set({ enable: true });
