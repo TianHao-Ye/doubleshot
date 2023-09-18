@@ -240,7 +240,6 @@ $(document).ready(function() {
         if (scaleFactor === 1 && !isPanning) {
             // Handle swipe left (next image)
             goToNextImage();
-            alert("hh");
         }
     });
 
@@ -251,10 +250,31 @@ $(document).ready(function() {
         // Check if the scaleFactor is not equal to 1
         if (scaleFactor !== 1) {
             isPanning = true;
+            startX = e.center.x;
+            startY = e.center.y;
         }
     });
 
-    hammer.on("panend", function(e) {
+    hammer.on("panmove", function(e) {
+        if (isPanning) {
+            // Calculate the distance moved
+            const deltaX = e.center.x - startX;
+            const deltaY = e.center.y - startY;
+
+            // Update the translate values
+            translateX += deltaX;
+            translateY += deltaY;
+
+            // Apply the translate values to the image
+            lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + (posX + translateX) + "px, " + (posY + translateY) + "px)");
+
+            // Update the start position for the next move event
+            startX = e.center.x;
+            startY = e.center.y;
+        }
+    });
+
+    hammer.on("panend", function() {
         isPanning = false;
     });
 });
