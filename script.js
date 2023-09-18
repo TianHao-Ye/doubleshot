@@ -240,6 +240,7 @@ $(document).ready(function() {
         if (scaleFactor === 1 && !isPanning) {
             // Handle swipe left (next image)
             goToNextImage();
+            alert("hh");
         }
     });
 
