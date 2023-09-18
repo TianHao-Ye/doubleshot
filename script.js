@@ -154,7 +154,10 @@ $(document).ready(function() {
     });
 
     // Function to reset image position and scale
-    function resetImagePosition() {       
+    function resetImagePosition() {
+        scaleFactor = 1; // Reset the scale factor to 1
+        posX = 0; // Reset the X position to 0
+        posY = 0; // Reset the Y position to 0       
         lightboxImg.css("transform", "scale(" + scaleFactor + ") translate(" + posX + "px, " + posY + "px)");
     }
 
