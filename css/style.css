@@ -197,6 +197,7 @@ h1, h2, h3{
 .work-bottom{
     margin-top: 4rem;
     text-align: center;
+    grid-template-columns: repeat(2, 1fr);
 }
 .work-bottom > div .icon .icon-pic{
     margin: 0 auto 1.7rem auto;
