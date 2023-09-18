@@ -206,6 +206,8 @@ $(document).ready(function() {
 
     // Initialize Hammer.js on the lightbox container for pinch and double-tap gestures
     let hammer = new Hammer(lightboxImg[0]);
+    // Variable to track if the user is in pan mode
+    let isPanning = false;
 
     // Handle pinch gesture to zoom in and out
     hammer.get("pinch").set({ enable: true });
@@ -228,12 +230,30 @@ $(document).ready(function() {
     hammer.get("swipe").set({ direction: Hammer.DIRECTION_HORIZONTAL });
 
     hammer.on("swiperight", function() {
-        // Handle swipe right (previous image)
-        goToPreviousImage();
+        if (scaleFactor === 1 && !isPanning) {
+            // Handle swipe right (previous image)
+            goToPreviousImage();
+        }
     });
 
     hammer.on("swipeleft", function() {
-        // Handle swipe left (next image)
-        goToNextImage();
+        if (scaleFactor === 1 && !isPanning) {
+            // Handle swipe left (next image)
+            goToNextImage();
+        }
+    });
+
+    // Function to handle pan gesture
+    hammer.get("pan").set({ direction: Hammer.DIRECTION_ALL });
+
+    hammer.on("panstart", function(e) {
+        // Check if the scaleFactor is not equal to 1
+        if (scaleFactor !== 1) {
+            isPanning = true;
+        }
+    });
+
+    hammer.on("panend", function(e) {
+        isPanning = false;
     });
 });
