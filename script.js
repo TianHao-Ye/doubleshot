@@ -1,16 +1,16 @@
+//navigation bar of website
 $(document).ready(function() {
-
   /*sticky navigation bar*/
   const navbar = $("#navbar");
   const sticky = navbar.offset().top;
 
   // When the user scrolls the page, execute myFunction
   $(window).scroll(function() {
-      myFunction();
+    toShowNavBar();
   });
 
   // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-  function myFunction() {
+  function toShowNavBar() {
       if ($(window).scrollTop() >= sticky) {
           navbar.addClass("sticky");
       } else {
@@ -53,7 +53,6 @@ $(document).ready(function() {
         elementToAnimate.addClass("jump");
     });
 });
-
 
 $(document).ready(function() {
     // Function to filter the images based on the selected category
